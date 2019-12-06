@@ -1,6 +1,6 @@
-package be.pekket.houseScraper.controller;
+package be.pekket.housescraper.controller;
 
-import be.pekket.houseScraper.service.HouseService;
+import be.pekket.housescraper.service.HouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

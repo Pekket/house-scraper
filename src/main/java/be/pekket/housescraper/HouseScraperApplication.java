@@ -1,4 +1,4 @@
-package be.pekket.houseScraper;
+package be.pekket.housescraper;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

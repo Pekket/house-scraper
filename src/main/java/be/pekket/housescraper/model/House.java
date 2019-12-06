@@ -1,4 +1,4 @@
-package be.pekket.houseScraper.model;
+package be.pekket.housescraper.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

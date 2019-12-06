@@ -1,6 +1,6 @@
-package be.pekket.houseScraper.zimmo.mapper;
+package be.pekket.housescraper.zimmo.mapper;
 
-import be.pekket.houseScraper.model.House;
+import be.pekket.housescraper.model.House;
 import com.gargoylesoftware.htmlunit.html.DomNode;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;

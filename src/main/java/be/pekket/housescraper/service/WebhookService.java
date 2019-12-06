@@ -1,6 +1,6 @@
-package be.pekket.houseScraper.service;
+package be.pekket.housescraper.service;
 
-import be.pekket.houseScraper.exception.ScraperException;
+import be.pekket.housescraper.exception.ScraperException;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
-import static be.pekket.houseScraper.zimmo.connector.ZimmoConnector.ZIMMO_SEARCH_URL;
+import static be.pekket.housescraper.zimmo.connector.ZimmoConnector.ZIMMO_SEARCH_URL;
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 
 @Service
