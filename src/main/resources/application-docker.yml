@@ -1,0 +1,11 @@
+# MongoDB settings
+spring:
+  data:
+    mongodb:
+      database: data
+      port: 27017
+      uri: mongodb://datastore
+
+#Tomcat settings
+server:
+  port: 8080
