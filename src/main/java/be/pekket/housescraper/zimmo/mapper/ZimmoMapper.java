@@ -18,18 +18,18 @@ public class ZimmoMapper {
     private static final String TITLE_XPATH = "div[@class='property-item_title ']/a";
     private static final String URL_XPATH = "a[@class='property-item_link']";
 
-    public List<House> map( List<DomNode> elements ) {
+    public List<House> map(List<DomNode> elements) {
         List<House> houses = new LinkedList<>();
 
-        for ( DomNode domElement : elements ) {
-            House.Builder house = new House.Builder();
+        for (DomNode domElement : elements) {
+            House house = House.builder()
+                    .title(this.getContent(domElement, TITLE_XPATH))
+                    .price(this.getContent(domElement, PRICE_XPATH))
+                    .address(this.getContent(domElement, ADDRESS_XPATH))
+                    .url(this.getLinkUrl(domElement, URL_XPATH))
+                    .build();
 
-            house.title(getContent(domElement, TITLE_XPATH));
-            house.price(getContent(domElement, PRICE_XPATH));
-            house.address(getContent(domElement, ADDRESS_XPATH));
-            house.url(getLinkUrl(domElement, URL_XPATH));
-
-            houses.add(house.build());
+            houses.add(house);
         }
 
         return houses;
