@@ -37,10 +37,10 @@ public class ZimmoMapper {
 
     private String getContent(DomNode domNode, String xpath) {
         String content = null;
-        DomNode node = (DomNode) domNode.getFirstByXPath(xpath);
-        if(node != null) {
-            content =  node.getTextContent();
-            if(!StringUtils.isEmpty(content)) {
+        DomNode node = domNode.getFirstByXPath(xpath);
+        if (node != null) {
+            content = node.getTextContent();
+            if (!StringUtils.isEmpty(content)) {
                 content = content.replaceAll("\\n\\W*\\n\\W*", " ");
                 content = content.replaceAll("€\\W+", "");
             }
@@ -50,8 +50,8 @@ public class ZimmoMapper {
 
     private String getLinkUrl(DomNode domNode, String xpath) {
         String url = null;
-        DomNode node = (DomNode) domNode.getFirstByXPath(xpath);
-        if(node != null && node.getAttributes().getNamedItem("href") != null) {
+        DomNode node = domNode.getFirstByXPath(xpath);
+        if (node != null && node.getAttributes().getNamedItem("href") != null) {
             url = ZIMMO_BASE_URL + node.getAttributes().getNamedItem("href").getTextContent();
         }
         return StringUtils.trimWhitespace(url);
