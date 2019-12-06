@@ -1,9 +1,9 @@
-package be.pekket.houseScraper.zimmo.service;
+package be.pekket.housescraper.zimmo.service;
 
-import be.pekket.houseScraper.exception.ScraperException;
-import be.pekket.houseScraper.model.House;
-import be.pekket.houseScraper.zimmo.connector.ZimmoConnector;
-import be.pekket.houseScraper.zimmo.mapper.ZimmoMapper;
+import be.pekket.housescraper.exception.ScraperException;
+import be.pekket.housescraper.model.House;
+import be.pekket.housescraper.zimmo.connector.ZimmoConnector;
+import be.pekket.housescraper.zimmo.mapper.ZimmoMapper;
 import com.gargoylesoftware.htmlunit.html.DomNode;
 import org.springframework.stereotype.Service;
 

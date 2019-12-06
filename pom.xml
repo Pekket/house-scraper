@@ -9,9 +9,9 @@
 		<relativePath/>
 	</parent>
 	<groupId>be.pekket</groupId>
-	<artifactId>houseScraper</artifactId>
+	<artifactId>housescraper</artifactId>
 	<version>0.0.1</version>
-	<name>houseScraper</name>
+	<name>House Scraper</name>
 	<description>House scraping project by Jan</description>
 
 	<properties>
@@ -46,6 +46,13 @@
 					<artifactId>junit-vintage-engine</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.10</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 

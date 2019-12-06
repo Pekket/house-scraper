@@ -1,6 +1,6 @@
-package be.pekket.houseScraper.repository;
+package be.pekket.housescraper.repository;
 
-import be.pekket.houseScraper.model.House;
+import be.pekket.housescraper.model.House;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

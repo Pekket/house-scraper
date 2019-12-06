@@ -1,9 +1,9 @@
-package be.pekket.houseScraper.service;
+package be.pekket.housescraper.service;
 
-import be.pekket.houseScraper.exception.ScraperException;
-import be.pekket.houseScraper.model.House;
-import be.pekket.houseScraper.repository.HouseRepository;
-import be.pekket.houseScraper.zimmo.service.ZimmoService;
+import be.pekket.housescraper.exception.ScraperException;
+import be.pekket.housescraper.model.House;
+import be.pekket.housescraper.repository.HouseRepository;
+import be.pekket.housescraper.zimmo.service.ZimmoService;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 

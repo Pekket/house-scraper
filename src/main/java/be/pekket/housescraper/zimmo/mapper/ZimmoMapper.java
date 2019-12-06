@@ -1,6 +1,6 @@
-package be.pekket.houseScraper.zimmo.mapper;
+package be.pekket.housescraper.zimmo.mapper;
 
-import be.pekket.houseScraper.model.House;
+import be.pekket.housescraper.model.House;
 import com.gargoylesoftware.htmlunit.html.DomNode;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -18,18 +18,18 @@ public class ZimmoMapper {
     private static final String TITLE_XPATH = "div[@class='property-item_title ']/a";
     private static final String URL_XPATH = "a[@class='property-item_link']";
 
-    public List<House> map( List<DomNode> elements ) {
+    public List<House> map(List<DomNode> elements) {
         List<House> houses = new LinkedList<>();
 
-        for ( DomNode domElement : elements ) {
-            House.Builder house = new House.Builder();
+        for (DomNode domElement : elements) {
+            House house = House.builder()
+                    .title(this.getContent(domElement, TITLE_XPATH))
+                    .price(this.getContent(domElement, PRICE_XPATH))
+                    .address(this.getContent(domElement, ADDRESS_XPATH))
+                    .url(this.getLinkUrl(domElement, URL_XPATH))
+                    .build();
 
-            house.title(getContent(domElement, TITLE_XPATH));
-            house.price(getContent(domElement, PRICE_XPATH));
-            house.address(getContent(domElement, ADDRESS_XPATH));
-            house.url(getLinkUrl(domElement, URL_XPATH));
-
-            houses.add(house.build());
+            houses.add(house);
         }
 
         return houses;
@@ -37,10 +37,10 @@ public class ZimmoMapper {
 
     private String getContent(DomNode domNode, String xpath) {
         String content = null;
-        DomNode node = (DomNode) domNode.getFirstByXPath(xpath);
-        if(node != null) {
-            content =  node.getTextContent();
-            if(!StringUtils.isEmpty(content)) {
+        DomNode node = domNode.getFirstByXPath(xpath);
+        if (node != null) {
+            content = node.getTextContent();
+            if (!StringUtils.isEmpty(content)) {
                 content = content.replaceAll("\\n\\W*\\n\\W*", " ");
                 content = content.replaceAll("€\\W+", "");
             }
@@ -50,8 +50,8 @@ public class ZimmoMapper {
 
     private String getLinkUrl(DomNode domNode, String xpath) {
         String url = null;
-        DomNode node = (DomNode) domNode.getFirstByXPath(xpath);
-        if(node != null && node.getAttributes().getNamedItem("href") != null) {
+        DomNode node = domNode.getFirstByXPath(xpath);
+        if (node != null && node.getAttributes().getNamedItem("href") != null) {
             url = ZIMMO_BASE_URL + node.getAttributes().getNamedItem("href").getTextContent();
         }
         return StringUtils.trimWhitespace(url);

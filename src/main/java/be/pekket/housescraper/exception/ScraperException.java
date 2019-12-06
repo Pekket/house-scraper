@@ -1,4 +1,4 @@
-package be.pekket.houseScraper.exception;
+package be.pekket.housescraper.exception;
 
 public class ScraperException extends Exception {
 

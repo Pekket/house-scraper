@@ -1,7 +1,7 @@
-package be.pekket.houseScraper.zimmo.connector;
+package be.pekket.housescraper.zimmo.connector;
 
 
-import be.pekket.houseScraper.exception.ScraperException;
+import be.pekket.housescraper.exception.ScraperException;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.DomNode;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
