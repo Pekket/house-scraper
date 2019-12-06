@@ -8,7 +8,7 @@ import org.springframework.util.StringUtils;
 public class House {
 
     @Id
-    private long id;
+    private String id;
 
     private String title;
     private String agency;
@@ -16,7 +16,7 @@ public class House {
     private String price;
     private String url;
 
-    public long getId() {
+    public String getId() {
         return this.id;
     }
 

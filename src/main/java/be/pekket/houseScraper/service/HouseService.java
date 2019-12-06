@@ -4,6 +4,7 @@ import be.pekket.houseScraper.exception.ScraperException;
 import be.pekket.houseScraper.model.House;
 import be.pekket.houseScraper.repository.HouseRepository;
 import be.pekket.houseScraper.zimmo.service.ZimmoService;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
@@ -22,6 +23,8 @@ public class HouseService {
         this.webhookService = webhookService;
     }
 
+
+    @Scheduled(cron = "0 0/10 * * * ?")
     public void processHouses() {
         List<House> newHouses = new LinkedList<>();
         try {
@@ -34,7 +37,7 @@ public class HouseService {
             }
 
             if(!newHouses.isEmpty()) {
-                webhookService.send();
+                webhookService.send(newHouses.size());
             }
         } catch ( ScraperException e ) {
             System.out.println("Oopsie error " + e.getMessage());

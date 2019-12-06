@@ -1,14 +1,14 @@
 version: '2'
 services:
-    datastore:
-        container_name: datastore
+    house-datastore:
+        container_name: house-datastore
         image: 'mongo:3.6'
         ports:
             - '27017:27017'
         environment:
             - MONGO_DATA_DIR=/data/db
             - MONGO_LOG_DIR=/log/mongo.log
-        command: 'mongod --logpath=/log/mongo.log'
+        command: 'mongod'
 
     house-app:
         container_name: house-app
@@ -19,6 +19,6 @@ services:
         environment:
             - DEBUG_PROPS=${DEBUG_PROPS}
         links:
-            - datastore
+            - house-datastore
         depends_on:
-            - datastore
+            - house-datastore
