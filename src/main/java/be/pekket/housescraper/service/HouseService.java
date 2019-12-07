@@ -2,6 +2,7 @@ package be.pekket.housescraper.service;
 
 import be.pekket.housescraper.exception.ScraperException;
 import be.pekket.housescraper.immovlan.service.ImmoVlanService;
+import be.pekket.housescraper.immoweb.service.ImmoWebService;
 import be.pekket.housescraper.model.House;
 import be.pekket.housescraper.repository.HouseRepository;
 import be.pekket.housescraper.zimmo.service.ZimmoService;
@@ -17,12 +18,15 @@ public class HouseService {
     private HouseRepository houseRepository;
     private ZimmoService zimmoService;
     private ImmoVlanService immoVlanService;
+    private ImmoWebService immoWebService;
     private WebhookService webhookService;
 
-    public HouseService( HouseRepository houseRepository, ZimmoService zimmoService, ImmoVlanService immoVlanService, WebhookService webhookService ) {
+    public HouseService( HouseRepository houseRepository, ZimmoService zimmoService, ImmoVlanService immoVlanService,
+                         ImmoWebService immoWebService, WebhookService webhookService ) {
         this.houseRepository = houseRepository;
         this.zimmoService = zimmoService;
         this.immoVlanService = immoVlanService;
+        this.immoWebService = immoWebService;
         this.webhookService = webhookService;
     }
 
@@ -32,6 +36,7 @@ public class HouseService {
         try {
             List<House> foundHouses = zimmoService.search();
             foundHouses.addAll(immoVlanService.search());
+            foundHouses.addAll(immoWebService.search());
 
             for ( House house : foundHouses ) {
                 if(!houseRepository.existsHouseByAddress(house.getAddress())) {
@@ -46,6 +51,9 @@ public class HouseService {
             System.out.println("Oopsie error " + e.getMessage());
         }
     }
+
+
+
 
     public List<House> getLastHouses() {
         return houseRepository.findTop20ByOrderByTimestampDesc();

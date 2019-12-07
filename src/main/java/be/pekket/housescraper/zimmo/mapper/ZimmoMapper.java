@@ -17,7 +17,7 @@ public class ZimmoMapper {
     private static final String ADDRESS_XPATH = "div[@class='property-item_address']";
     private static final String TITLE_XPATH = "div[@class='property-item_title ']/a";
     private static final String URL_XPATH = "a[@class='property-item_link']";
-    private static final String IMG_XPATH = "div[@class='property-thumb ']";
+    private static final String IMG_XPATH = "a[@class='property-item_link']/div[@class='property-item-slider']/img";
 
     public List<House> map( List<DomNode> elements ) {
         List<House> houses = new LinkedList<>();
