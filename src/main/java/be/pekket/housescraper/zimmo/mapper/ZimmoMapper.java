@@ -17,16 +17,19 @@ public class ZimmoMapper {
     private static final String ADDRESS_XPATH = "div[@class='property-item_address']";
     private static final String TITLE_XPATH = "div[@class='property-item_title ']/a";
     private static final String URL_XPATH = "a[@class='property-item_link']";
+    private static final String IMG_XPATH = "div[@class='property-thumb ']";
 
-    public List<House> map(List<DomNode> elements) {
+    public List<House> map( List<DomNode> elements ) {
         List<House> houses = new LinkedList<>();
 
-        for (DomNode domElement : elements) {
+        for ( DomNode domElement : elements ) {
             House house = House.builder()
+                    .timestamp(System.currentTimeMillis())
                     .title(this.getContent(domElement, TITLE_XPATH))
                     .price(this.getContent(domElement, PRICE_XPATH))
                     .address(this.getContent(domElement, ADDRESS_XPATH))
                     .url(this.getLinkUrl(domElement, URL_XPATH))
+                    .imgUrl(this.getImgUrl(domElement, IMG_XPATH))
                     .build();
 
             houses.add(house);
@@ -35,12 +38,12 @@ public class ZimmoMapper {
         return houses;
     }
 
-    private String getContent(DomNode domNode, String xpath) {
+    private String getContent( DomNode domNode, String xpath ) {
         String content = null;
         DomNode node = domNode.getFirstByXPath(xpath);
-        if (node != null) {
+        if ( node != null ) {
             content = node.getTextContent();
-            if (!StringUtils.isEmpty(content)) {
+            if ( !StringUtils.isEmpty(content) ) {
                 content = content.replaceAll("\\n\\W*\\n\\W*", " ");
                 content = content.replaceAll("€\\W+", "");
             }
@@ -48,11 +51,20 @@ public class ZimmoMapper {
         return StringUtils.trimWhitespace(content);
     }
 
-    private String getLinkUrl(DomNode domNode, String xpath) {
+    private String getLinkUrl( DomNode domNode, String xpath ) {
         String url = null;
         DomNode node = domNode.getFirstByXPath(xpath);
-        if (node != null && node.getAttributes().getNamedItem("href") != null) {
+        if ( node != null && node.getAttributes().getNamedItem("href") != null ) {
             url = ZIMMO_BASE_URL + node.getAttributes().getNamedItem("href").getTextContent();
+        }
+        return StringUtils.trimWhitespace(url);
+    }
+
+    private String getImgUrl( DomNode domNode, String xpath ) {
+        String url = null;
+        DomNode node = domNode.getFirstByXPath(xpath);
+        if ( node != null && node.getAttributes().getNamedItem("src") != null ) {
+            url = node.getAttributes().getNamedItem("src").getTextContent();
         }
         return StringUtils.trimWhitespace(url);
     }

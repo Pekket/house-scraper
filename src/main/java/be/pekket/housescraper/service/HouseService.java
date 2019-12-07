@@ -46,4 +46,8 @@ public class HouseService {
             System.out.println("Oopsie error " + e.getMessage());
         }
     }
+
+    public List<House> getLastHouses() {
+        return houseRepository.findTop20ByOrderByTimestampDesc();
+    }
 }

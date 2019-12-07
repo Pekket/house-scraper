@@ -12,10 +12,12 @@ public class House {
 
     @Id
     private String id;
+    private long timestamp;
 
     private String title;
     private String agency;
     private String address;
     private String price;
     private String url;
+    private String imgUrl;
 }

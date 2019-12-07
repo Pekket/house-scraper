@@ -18,4 +18,6 @@ public class ImmoVlanHouse implements Serializable {
     private ImmoVlanOwner owner;
     @JsonProperty("displayUrl")
     private String url;
+    @JsonProperty("displayImgUrl")
+    private String imgUrl;
 }

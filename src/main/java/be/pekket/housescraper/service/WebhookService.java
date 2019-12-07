@@ -16,7 +16,7 @@ import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 @Service
 public class WebhookService {
 
-    private static final String url = "https://maker.ifttt.com/trigger/newhouse/with/key/XXX";
+    private static final String url = "https://maker.ifttt.com/trigger/newhouse/with/key/djkZEauOtI3hGkrsXqXnr7";
 
     public void send(int count) throws ScraperException {
         try ( final CloseableHttpClient client = HttpClients.createDefault() ) {

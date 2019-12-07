@@ -12,13 +12,24 @@ services:
 
     house-app:
         container_name: house-app
-        image: 'pekket-house-app:latest'
+        image: 'house-app:latest'
         restart: always
         ports:
-            - '8080:8080'
+            - '8000:8000'
         environment:
             - DEBUG_PROPS=${DEBUG_PROPS}
         links:
             - house-datastore
         depends_on:
             - house-datastore
+
+    house-ui:
+        container_name: house-ui
+        image: 'house-ui:latest'
+        restart: always
+        ports:
+            - '80:81'
+        links:
+            - house-app
+        depends_on:
+            - house-app
