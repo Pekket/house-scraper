@@ -1,6 +1,5 @@
 package be.pekket.housescraper;
 
-import be.pekket.housescraper.service.HouseService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -15,8 +14,8 @@ public class HouseScraperApplication {
 
     public static void main( String[] args ) {
         ApplicationContext context = SpringApplication.run(HouseScraperApplication.class, args);
-        HouseService service = context.getBean(HouseService.class);
-        service.processHouses();
+//        HouseService service = context.getBean(HouseService.class);
+//        service.processHouses();
     }
 
     @Bean

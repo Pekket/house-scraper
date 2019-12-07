@@ -1,6 +1,7 @@
 package be.pekket.housescraper.service;
 
 import be.pekket.housescraper.exception.ScraperException;
+import be.pekket.housescraper.immoscoop.service.ImmoscoopService;
 import be.pekket.housescraper.immovlan.service.ImmoVlanService;
 import be.pekket.housescraper.immoweb.service.ImmoWebService;
 import be.pekket.housescraper.model.House;
@@ -9,6 +10,7 @@ import be.pekket.housescraper.zimmo.service.ZimmoService;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,14 +21,16 @@ public class HouseService {
     private ZimmoService zimmoService;
     private ImmoVlanService immoVlanService;
     private ImmoWebService immoWebService;
+    private ImmoscoopService immoscoopService;
     private WebhookService webhookService;
 
     public HouseService( HouseRepository houseRepository, ZimmoService zimmoService, ImmoVlanService immoVlanService,
-                         ImmoWebService immoWebService, WebhookService webhookService ) {
+                         ImmoWebService immoWebService, ImmoscoopService immoscoopService, WebhookService webhookService ) {
         this.houseRepository = houseRepository;
         this.zimmoService = zimmoService;
         this.immoVlanService = immoVlanService;
         this.immoWebService = immoWebService;
+        this.immoscoopService = immoscoopService;
         this.webhookService = webhookService;
     }
 
@@ -34,9 +38,10 @@ public class HouseService {
     public void processHouses() {
         List<House> newHouses = new LinkedList<>();
         try {
-            List<House> foundHouses = zimmoService.search();
+            List<House> foundHouses =  zimmoService.search();
             foundHouses.addAll(immoVlanService.search());
             foundHouses.addAll(immoWebService.search());
+            foundHouses.addAll(immoscoopService.search());
 
             for ( House house : foundHouses ) {
                 if(!houseRepository.existsHouseByAddress(house.getAddress())) {
@@ -45,6 +50,7 @@ public class HouseService {
             }
 
             if(!newHouses.isEmpty()) {
+                Collections.shuffle(newHouses);
                 webhookService.send(newHouses.size());
             }
         } catch ( ScraperException e ) {
