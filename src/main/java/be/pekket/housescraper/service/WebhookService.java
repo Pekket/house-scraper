@@ -1,35 +1,33 @@
 package be.pekket.housescraper.service;
 
-import be.pekket.housescraper.exception.ScraperException;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-
-import java.io.IOException;
-
-import static be.pekket.housescraper.zimmo.connector.ZimmoConnector.ZIMMO_SEARCH_URL;
-import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 public class WebhookService {
 
-    private static final String url = "https://maker.ifttt.com/trigger/newhouse/with/key/djkZEauOtI3hGkrsXqXnr7";
+    @Value("${iftt.webhook.event.name:newhouse}")
+    private String eventName;
+    @Value("${iftt.webhook.event.id:djkZEauOtI3hGkrsXqXnr7}")
+    private String eventId;
+    private static final String url = "https://maker.ifttt.com/trigger/%s/with/key/%s";
+    private final RestTemplate restTemplate;
 
-    public void send(int count) throws ScraperException {
-        try ( final CloseableHttpClient client = HttpClients.createDefault() ) {
-            HttpPost httpPost = new HttpPost(url);
-            httpPost.addHeader(CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
-
-            final String requestBody = "{\"value2\":\"Aantal " +  count + "\",\"value1\":\"" + ZIMMO_SEARCH_URL + "\"}";
-
-            httpPost.setEntity(new StringEntity(requestBody));
-            client.execute(httpPost);
-        } catch ( IOException e ) {
-           throw new ScraperException("Error sending webhook");
-        }
+    public WebhookService( RestTemplate restTemplate ) {
+        this.restTemplate = restTemplate;
     }
 
+    public void send( int count ) {
+        final String requestBody = "{\"value2\":\"" + count + "\"}";
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        String postUrl = String.format(url, eventName, eventId);
+        HttpEntity<String> request = new HttpEntity<>(requestBody, headers);
+        restTemplate.postForEntity(postUrl, request, String.class);
+    }
 }

@@ -15,11 +15,7 @@ class HouseContainer extends Component {
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            houses: null
-        };
-
+        this.state = {houses: null};
         this.fetchHouses();
     }
 
@@ -28,7 +24,6 @@ class HouseContainer extends Component {
             method: "GET",
             url: `${baseUrl}`,
         }).then(response => {
-                console.log("hier")
                 this.setState({houses: response.data})
             }
         );
@@ -38,9 +33,8 @@ class HouseContainer extends Component {
         const {houses} = this.state;
         return (
             <Container maxWidth="sm">
-                <List component="nav" aria-label="secondary mailbox folders">
+                <List component="nav">
                     {
-
                         houses && houses.length ? houses.map(house => {
                             return (
                                 <ListItemLink style={{display: "block"}}
@@ -48,7 +42,7 @@ class HouseContainer extends Component {
                                               button>
                                     <House data={house}/>
                                 </ListItemLink>)
-                        }) : <p>No houses</p>
+                        }) : <p>geen huizen gevonden</p>
                     }
                 </List>
             </Container>

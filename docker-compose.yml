@@ -15,7 +15,7 @@ services:
         image: 'house-app:latest'
         restart: always
         ports:
-            - '8000:8000'
+            - '8001:8001'
         environment:
             - DEBUG_PROPS=${DEBUG_PROPS}
         links:
@@ -28,7 +28,7 @@ services:
         image: 'house-ui:latest'
         restart: always
         ports:
-            - '80:81'
+            - '8181:81'
         links:
             - house-app
         depends_on:

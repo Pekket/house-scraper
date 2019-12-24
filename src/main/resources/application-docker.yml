@@ -8,4 +8,11 @@ spring:
 
 #Tomcat settings
 server:
-  port: 8080
+  port: 8081
+
+#IFTT webhook settings
+iftt:
+  webhook:
+    event:
+      name: "newhouse"
+      id: "djkZEauOtI3hGkrsXqXnr7"
