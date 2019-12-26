@@ -4,7 +4,7 @@ services:
         container_name: house-datastore
         image: 'mongo:3.6'
         ports:
-            - '27017:27017'
+            - '27018:27017'
         environment:
             - MONGO_DATA_DIR=/data/db
             - MONGO_LOG_DIR=/log/mongo.log
@@ -15,7 +15,7 @@ services:
         image: 'house-app:latest'
         restart: always
         ports:
-            - '8001:8001'
+            - '8081:8081'
         environment:
             - DEBUG_PROPS=${DEBUG_PROPS}
         links:
@@ -23,13 +23,13 @@ services:
         depends_on:
             - house-datastore
 
-    house-ui:
-        container_name: house-ui
-        image: 'house-ui:latest'
-        restart: always
-        ports:
-            - '8181:81'
-        links:
-            - house-app
-        depends_on:
-            - house-app
+#    house-ui:
+#        container_name: house-ui
+#        image: 'house-ui:latest'
+#        restart: always
+#        ports:
+#            - '8181:81'
+#        links:
+#            - house-app
+#        depends_on:
+#            - house-app

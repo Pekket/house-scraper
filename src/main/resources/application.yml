@@ -3,7 +3,7 @@ spring:
   data:
     mongodb:
       database: data
-      port: 27017
+      port: 27018
       uri: mongodb://house-datastore
 
 #Tomcat settings
