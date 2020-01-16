@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class ImmoWebConnector {
 
-    private static final String IMMOWEB_SEARCH_URL = "https://beta.immoweb.be/nl/search/get-results?countries=BE&postalCodes=BE-3600__Genk+%283600%29&propertyTypes=HOUSE%2CAPARTMENT&transactionTypes=FOR_SALE&isSoldOrRented=false&page=1&orderBy=newest";
+    private static final String IMMOWEB_SEARCH_URL = "https://beta.immoweb.be/nl/search-results/huis-en-appartement/te-koop/genk/3600?countries=BE&page=0&orderBy=newest";
     private RestTemplate restTemplate;
 
     public ImmoWebConnector( RestTemplate restTemplate ) {
@@ -21,12 +21,17 @@ public class ImmoWebConnector {
 
     public List<ImmoWebHouse> getHouses() {
         List<ImmoWebHouse> houses = new LinkedList<>();
-        ResponseEntity<ImmoWebResponse> foundHouses = restTemplate.getForEntity(IMMOWEB_SEARCH_URL, ImmoWebResponse.class);
 
-        if ( foundHouses.hasBody() ) {
-            ImmoWebResponse response = foundHouses.getBody();
-            if ( response != null )
-                houses = response.getHouses();
+        try {
+            ResponseEntity<ImmoWebResponse> foundHouses = restTemplate.getForEntity(IMMOWEB_SEARCH_URL, ImmoWebResponse.class);
+
+            if ( foundHouses.hasBody() ) {
+                ImmoWebResponse response = foundHouses.getBody();
+                if ( response != null )
+                    houses = response.getHouses();
+            }
+        } catch ( Exception e ) {
+            System.out.println("Error while getting houses from immoweb " + e.getMessage());
         }
 
         return houses;

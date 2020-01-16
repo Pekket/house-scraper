@@ -30,17 +30,19 @@ public class ImmoVlanConnector {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<String> request =
-                new HttpEntity<String>(IMMOVLAN_SEARCH_BODY, headers);
+        HttpEntity<String> request = new HttpEntity<String>(IMMOVLAN_SEARCH_BODY, headers);
 
-        ResponseEntity<ImmoVlanResponse> foundHouses = restTemplate.postForEntity(IMMOVLAN_SEARCH_URL, request, ImmoVlanResponse.class);
+        try {
+            ResponseEntity<ImmoVlanResponse> foundHouses = restTemplate.postForEntity(IMMOVLAN_SEARCH_URL, request, ImmoVlanResponse.class);
 
-        if ( foundHouses.hasBody() ) {
-            ImmoVlanResponse response = foundHouses.getBody();
-            if ( response != null )
-                houses = response.getHouses();
+            if ( foundHouses.hasBody() ) {
+                ImmoVlanResponse response = foundHouses.getBody();
+                if ( response != null )
+                    houses = response.getHouses();
+            }
+        } catch ( Exception e ) {
+            System.out.println("Error while getting houses from immovlan " + e.getMessage());
         }
-
         return houses;
     }
 }

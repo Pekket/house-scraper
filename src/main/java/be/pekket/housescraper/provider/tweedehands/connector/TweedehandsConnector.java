@@ -21,12 +21,17 @@ public class TweedehandsConnector {
 
     public List<TweedehandsHouse> getHouses()  {
         List<TweedehandsHouse> houses = new LinkedList<>();
-        ResponseEntity<TweedehandsModel> foundHouses = restTemplate.getForEntity(TWEEDEHANDS_SEARCH_URL, TweedehandsModel.class);
 
-        if ( foundHouses.hasBody() ) {
-            TweedehandsModel response = foundHouses.getBody();
-            if ( response != null )
-                houses = response.getHouses();
+        try {
+            ResponseEntity<TweedehandsModel> foundHouses = restTemplate.getForEntity(TWEEDEHANDS_SEARCH_URL, TweedehandsModel.class);
+
+            if ( foundHouses.hasBody() ) {
+                TweedehandsModel response = foundHouses.getBody();
+                if ( response != null )
+                    houses = response.getHouses();
+            }
+        }catch ( Exception e ) {
+            System.out.println("Error while getting houses from tweedehands " + e.getMessage());
         }
         return houses;
     }
