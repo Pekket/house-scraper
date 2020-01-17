@@ -11,6 +11,7 @@ import be.pekket.housescraper.provider.zimmo.service.ZimmoService;
 import be.pekket.housescraper.repository.HouseRepository;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -58,18 +59,24 @@ public class HouseService {
             }
 
             if ( !newHouses.isEmpty() ) {
-              //  webhookService.send(newHouses.size());
+                webhookService.send(newHouses.size());
             }
         } catch ( ScraperException e ) {
             System.out.println("Oopsie error " + e.getMessage());
         }
     }
 
-    public List<House> getLastHouses(String addressQuery, String providers) {
+    public List<House> getLastHouses( String addressQuery, String providers ) {
         List<Provider> providersList = Arrays.stream(providers.split(","))
                 .map(Provider::byValue)
                 .collect(Collectors.toList());
 
-        return houseRepository.findTop30ByAddressContainingIgnoreCaseAndProviderInOrderByTimestampDesc(addressQuery, providersList);
+        List<House> houses;
+        if ( StringUtils.isEmpty(addressQuery) )
+            houses = houseRepository.findTop30ByProviderInOrderByTimestampDesc(providersList);
+        else
+            houses = houseRepository.findTop30ByAddressContainingIgnoreCaseAndProviderInOrderByTimestampDesc(addressQuery, providersList);
+
+        return houses;
     }
 }
