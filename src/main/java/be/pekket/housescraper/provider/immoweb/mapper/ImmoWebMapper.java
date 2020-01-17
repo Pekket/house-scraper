@@ -25,7 +25,7 @@ public class ImmoWebMapper {
                     .address(immoHouse.getProperty().getAddress().toString())
                     .price(immoHouse.getPrice().getAmount())
                     .agency(immoHouse.getAgency())
-                    .imgUrl(immoHouse.getMedia().getImages().get(0).getImgUrl())
+                    .imgUrl(immoHouse.getFirstImage())
                     .build();
 
             if(house != null){

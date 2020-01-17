@@ -17,5 +17,11 @@ public class ImmoWebHouse {
     @JsonProperty("price")
     private ImmoWebPrice price;
 
-
+    public String getFirstImage() {
+        String imgUrl = null;
+        if ( media != null && media.getImages() != null && media.getImages().size() > 0 ) {
+            imgUrl = media.getImages().get(0).getImgUrl();
+        }
+        return imgUrl;
+    }
 }

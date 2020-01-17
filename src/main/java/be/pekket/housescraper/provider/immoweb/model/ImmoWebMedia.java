@@ -8,7 +8,7 @@ import java.util.List;
 @Getter
 public class ImmoWebMedia {
 
-    @JsonProperty("images")
+    @JsonProperty("pictures")
     private List<Image> images;
 
     public static class Image {
