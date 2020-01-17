@@ -17,4 +17,6 @@ public interface HouseRepository extends MongoRepository<House, String> {
     List<House> findTop30ByOrderByTimestampDesc();
 
     List<House> findTop30ByProviderInOrderByTimestampDesc( List<Provider> providers );
+
+    List<House> findTop30ByAddressContainingIgnoreCaseAndProviderInOrderByTimestampDesc(String addressQuery, List<Provider> providers);
 }

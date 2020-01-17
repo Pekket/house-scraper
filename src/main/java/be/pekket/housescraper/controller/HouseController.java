@@ -14,6 +14,7 @@ public class HouseController {
     private static final String HOUSE_MAPPING = "/house";
 
     private static final String DEFAULT_PROVIDERS = "zimmo,immoscoop,immoweb,immovlan,tweedehands";
+    private static final String DEFAULT_ADDRESS_QUERY = "";
 
     private HouseService houseService;
 
@@ -23,7 +24,8 @@ public class HouseController {
     }
 
     @GetMapping(value = HOUSE_MAPPING)
-    public List<House> get( @RequestParam(name = "providers", defaultValue = DEFAULT_PROVIDERS, required = false) final String providers ) {
-        return houseService.getLastHouses(providers);
+    public List<House> get( @RequestParam(name = "providers", defaultValue = DEFAULT_PROVIDERS, required = false) final String providers,
+                            @RequestParam(name = "q", defaultValue = DEFAULT_ADDRESS_QUERY, required = false) final String addressQuery ) {
+        return houseService.getLastHouses(addressQuery, providers);
     }
 }

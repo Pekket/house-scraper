@@ -58,18 +58,18 @@ public class HouseService {
             }
 
             if ( !newHouses.isEmpty() ) {
-                webhookService.send(newHouses.size());
+              //  webhookService.send(newHouses.size());
             }
         } catch ( ScraperException e ) {
             System.out.println("Oopsie error " + e.getMessage());
         }
     }
 
-    public List<House> getLastHouses(String providers) {
+    public List<House> getLastHouses(String addressQuery, String providers) {
         List<Provider> providersList = Arrays.stream(providers.split(","))
                 .map(Provider::byValue)
                 .collect(Collectors.toList());
 
-        return houseRepository.findTop30ByProviderInOrderByTimestampDesc(providersList);
+        return houseRepository.findTop30ByAddressContainingIgnoreCaseAndProviderInOrderByTimestampDesc(addressQuery, providersList);
     }
 }
