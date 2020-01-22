@@ -8,6 +8,8 @@ services:
         environment:
             - MONGO_DATA_DIR=/data/db
             - MONGO_LOG_DIR=/log/mongo.log
+        volumes:
+            - './data/db:/data/db'
         command: 'mongod'
 
     house-app:
