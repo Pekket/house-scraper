@@ -55,7 +55,7 @@ public class HouseService {
             foundHouses.addAll(realoService.search());
 
             for ( House house : foundHouses ) {
-                if ( Provider.TWEEDEHANDS.equals(house.getProvider()) || Provider.IMMOSCOOP.equals(house.getProvider()) ) {
+                if ( house.getAddress() == null || Provider.TWEEDEHANDS.equals(house.getProvider()) || Provider.IMMOSCOOP.equals(house.getProvider()) ) {
                     if ( !houseRepository.existsHouseByUrl(house.getUrl()) )
                         newHouses.add(houseRepository.save(house));
                 } else if ( !houseRepository.existsHouseByAddress(house.getAddress()) )

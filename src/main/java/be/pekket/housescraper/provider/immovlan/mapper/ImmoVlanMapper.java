@@ -33,7 +33,6 @@ public class ImmoVlanMapper {
                     .build();
 
             if(house != null){
-                LOG.info("Found house {} {}", house.getTitle(), house.getImgUrl());
                 houses.add(house);
             }
         }

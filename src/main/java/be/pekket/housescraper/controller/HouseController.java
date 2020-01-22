@@ -13,7 +13,7 @@ import java.util.List;
 public class HouseController {
     private static final String HOUSE_MAPPING = "/house";
 
-    private static final String DEFAULT_PROVIDERS = "zimmo,immoscoop,immoweb,immovlan,tweedehands";
+    private static final String DEFAULT_PROVIDERS = "zimmo,immoscoop,immoweb,immovlan,tweedehands,realo";
     private static final String DEFAULT_ADDRESS_QUERY = "";
 
     private HouseService houseService;

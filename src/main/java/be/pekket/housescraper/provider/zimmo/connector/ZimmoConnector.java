@@ -20,7 +20,7 @@ public class ZimmoConnector {
             webClient.getOptions().setThrowExceptionOnScriptError(false);
 
             final HtmlPage page = webClient.getPage(ZIMMO_SEARCH_URL);
-            results = page.getByXPath("//div[@class='property-item ']");
+            results = page.getByXPath("//div[@class='property-results_container']/div[contains(@class,'property-item')]");
         } catch ( IOException e ) {
             throw new ScraperException("Error connecting to Zimmo " + e.getMessage());
         }

@@ -1,7 +1,7 @@
 package be.pekket.housescraper.provider.zimmo.mapper;
 
-import be.pekket.housescraper.provider.Provider;
 import be.pekket.housescraper.model.House;
+import be.pekket.housescraper.provider.Provider;
 import com.gargoylesoftware.htmlunit.html.DomNode;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -34,6 +34,9 @@ public class ZimmoMapper {
                     .imgUrl(this.getImgUrl(domElement, IMG_XPATH))
                     .build();
 
+            if ( house.getAddress().contains("aanvraag") )
+                house.setAddress(null);
+
             houses.add(house);
         }
 
@@ -47,6 +50,7 @@ public class ZimmoMapper {
             content = node.getTextContent();
             if ( !StringUtils.isEmpty(content) ) {
                 content = content.replaceAll("\\n\\W*\\n\\W*", " ");
+                content = content.replaceAll("Prijs vanaf\\n+\\W+", " ");
                 content = content.replaceAll("€\\W+", "");
             }
         }
