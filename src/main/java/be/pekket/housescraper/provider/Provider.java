@@ -5,7 +5,8 @@ public enum Provider {
     ZIMMO("zimmo"),
     IMMOWEB("immoweb"),
     IMMOVLAN("immovlan"),
-    TWEEDEHANDS("tweedehands");
+    TWEEDEHANDS("tweedehands"),
+    REALO("realo");
 
     private final String provider;
 
@@ -29,6 +30,8 @@ public enum Provider {
                 return IMMOVLAN;
             case "tweedehands":
                 return TWEEDEHANDS;
+            case "realo":
+                return REALO;
             default:
                 return null;
         }

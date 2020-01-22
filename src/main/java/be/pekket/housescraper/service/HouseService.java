@@ -6,6 +6,7 @@ import be.pekket.housescraper.provider.Provider;
 import be.pekket.housescraper.provider.immoscoop.service.ImmoscoopService;
 import be.pekket.housescraper.provider.immovlan.service.ImmoVlanService;
 import be.pekket.housescraper.provider.immoweb.service.ImmoWebService;
+import be.pekket.housescraper.provider.realo.service.RealoService;
 import be.pekket.housescraper.provider.tweedehands.service.TweedehandsService;
 import be.pekket.housescraper.provider.zimmo.service.ZimmoService;
 import be.pekket.housescraper.repository.HouseRepository;
@@ -27,16 +28,18 @@ public class HouseService {
     private ImmoWebService immoWebService;
     private ImmoscoopService immoscoopService;
     private TweedehandsService tweedehandsService;
+    private RealoService realoService;
     private WebhookService webhookService;
 
     public HouseService( HouseRepository houseRepository, ZimmoService zimmoService, ImmoVlanService immoVlanService,
-                         ImmoWebService immoWebService, ImmoscoopService immoscoopService, TweedehandsService tweedehandsService, WebhookService webhookService ) {
+                         ImmoWebService immoWebService, ImmoscoopService immoscoopService, TweedehandsService tweedehandsService, RealoService realoService, WebhookService webhookService ) {
         this.houseRepository = houseRepository;
         this.zimmoService = zimmoService;
         this.immoVlanService = immoVlanService;
         this.immoWebService = immoWebService;
         this.immoscoopService = immoscoopService;
         this.tweedehandsService = tweedehandsService;
+        this.realoService = realoService;
         this.webhookService = webhookService;
     }
 
@@ -49,6 +52,7 @@ public class HouseService {
             foundHouses.addAll(immoWebService.search());
             foundHouses.addAll(zimmoService.search());
             foundHouses.addAll(tweedehandsService.search());
+            foundHouses.addAll(realoService.search());
 
             for ( House house : foundHouses ) {
                 if ( Provider.TWEEDEHANDS.equals(house.getProvider()) || Provider.IMMOSCOOP.equals(house.getProvider()) ) {

@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class ImmoWebConnector {
 
-    private static final String IMMOWEB_SEARCH_URL = "https://beta.immoweb.be/nl/search-results/huis-en-appartement/te-koop/genk/3600?countries=BE&page=0&orderBy=newest";
+    private static final String IMMOWEB_SEARCH_URL = "https://immoweb.be/nl/search-results/huis-en-appartement/te-koop/genk/3600?countries=BE&page=0&orderBy=newest";
     private RestTemplate restTemplate;
 
     public ImmoWebConnector( RestTemplate restTemplate ) {

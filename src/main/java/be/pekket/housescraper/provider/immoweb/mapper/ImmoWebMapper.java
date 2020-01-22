@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class ImmoWebMapper {
 
-    private static final String BASE_URL = "https://beta.immoweb.be/nl/bericht/appartement/te-koop/";
+    private static final String BASE_URL = "https://immoweb.be/nl/bericht/appartement/te-koop/";
 
     public List<House> map( List<ImmoWebHouse> elements ) {
         List<House> houses = new LinkedList<>();

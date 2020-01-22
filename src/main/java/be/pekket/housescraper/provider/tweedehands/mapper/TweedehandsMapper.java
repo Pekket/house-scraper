@@ -32,7 +32,6 @@ public class TweedehandsMapper {
                     .build();
 
             if(house != null){
-                LOG.info("Found tweedehands house {} {}", house.getTitle(), house.getImgUrl());
                 houses.add(house);
             }
         }
