@@ -10,8 +10,6 @@ public class ImmoVlanHouse implements Serializable {
 
     @JsonProperty("displayTitle")
     private String title;
-    @JsonProperty("address")
-    private ImmoVlanAddress address;
     @JsonProperty("financialInfo")
     private ImmoVlanFinancial financial;
     @JsonProperty("ownerInfo")

@@ -26,9 +26,8 @@ public class ImmoVlanMapper {
                     .provider(Provider.IMMOVLAN)
                     .title(ivHouse.getTitle())
                     .url(IMMOVLAN_BASE_URL + ivHouse.getUrl())
-                    .address(ivHouse.getAddress().toString())
+                    .address(null)
                     .price(ivHouse.getFinancial().getPrice())
-                    .agency(ivHouse.getOwner().getAgency())
                     .imgUrl(IMMOVLAN_IMG_BASE_URL + ivHouse.getImgUrl())
                     .build();
 
