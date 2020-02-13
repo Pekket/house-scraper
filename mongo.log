@@ -1,0 +1,9 @@
+22825 [main] DEBUG o.s.d.m.c.i.MongoPersistentEntityIndexCreator - Analyzing class class be.pekket.housescraper.model.House for index information.
+79620 [main] DEBUG o.s.d.m.r.query.MongoQueryCreator - Created query Query: { "url" : "https://www.immoscoop.be/te-koop/immo/woning/genk/hasselt/412018/"}, Fields: {}, Sort: {}
+79639 [main] DEBUG o.s.data.mongodb.core.MongoTemplate - Executing count: { "url" : "https://www.immoscoop.be/te-koop/immo/woning/genk/hasselt/412018/"} in collection: houses
+22294 [main] DEBUG o.s.d.m.c.i.MongoPersistentEntityIndexCreator - Analyzing class class be.pekket.housescraper.model.House for index information.
+38722 [main] DEBUG o.s.d.m.r.query.MongoQueryCreator - Created query Query: { "url" : "https://www.immoscoop.be/te-koop/immo/woning/genk/hasselt/412018/"}, Fields: {}, Sort: {}
+38735 [main] DEBUG o.s.data.mongodb.core.MongoTemplate - Executing count: { "url" : "https://www.immoscoop.be/te-koop/immo/woning/genk/hasselt/412018/"} in collection: houses
+2917 [main] DEBUG o.s.d.m.c.i.MongoPersistentEntityIndexCreator - Analyzing class class be.pekket.housescraper.model.House for index information.
+22803 [main] DEBUG o.s.d.m.r.query.MongoQueryCreator - Created query Query: { "url" : "https://www.immoscoop.be/te-koop/immo/woning/genk/hasselt/412018/"}, Fields: {}, Sort: {}
+22817 [main] DEBUG o.s.data.mongodb.core.MongoTemplate - Executing count: { "url" : "https://www.immoscoop.be/te-koop/immo/woning/genk/hasselt/412018/"} in collection: houses

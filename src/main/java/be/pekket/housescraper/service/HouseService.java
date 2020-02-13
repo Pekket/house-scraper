@@ -10,6 +10,8 @@ import be.pekket.housescraper.provider.realo.service.RealoService;
 import be.pekket.housescraper.provider.tweedehands.service.TweedehandsService;
 import be.pekket.housescraper.provider.zimmo.service.ZimmoService;
 import be.pekket.housescraper.repository.HouseRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -21,6 +23,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class HouseService {
+    private static final Logger LOG = LoggerFactory.getLogger(HouseService.class);
 
     private HouseRepository houseRepository;
     private ZimmoService zimmoService;
@@ -54,6 +57,7 @@ public class HouseService {
             foundHouses.addAll(tweedehandsService.search());
             foundHouses.addAll(realoService.search());
 
+            LOG.info("total houses found {}", foundHouses.size());
             for ( House house : foundHouses ) {
                 if ( house.getAddress() == null || Provider.TWEEDEHANDS.equals(house.getProvider()) || Provider.IMMOSCOOP.equals(house.getProvider()) ) {
                     if ( !houseRepository.existsHouseByUrl(house.getUrl()) )
@@ -66,7 +70,7 @@ public class HouseService {
                 webhookService.send(newHouses.size());
             }
         } catch ( ScraperException e ) {
-            System.out.println("Oopsie error " + e.getMessage());
+            LOG.error("Oopsie error {}", e.getMessage());
         }
     }
 
