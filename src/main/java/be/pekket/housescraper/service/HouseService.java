@@ -66,6 +66,7 @@ public class HouseService {
                     newHouses.add(houseRepository.save(house));
             }
 
+            LOG.info("new houses found {}", newHouses.size());
             if ( !newHouses.isEmpty() ) {
                 webhookService.send(newHouses.size());
             }
