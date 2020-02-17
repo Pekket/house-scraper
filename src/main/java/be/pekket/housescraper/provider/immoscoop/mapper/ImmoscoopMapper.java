@@ -1,6 +1,6 @@
 package be.pekket.housescraper.provider.immoscoop.mapper;
 
-import be.pekket.housescraper.provider.Provider;
+import be.pekket.housescraper.provider.ProviderType;
 import be.pekket.housescraper.model.House;
 import com.gargoylesoftware.htmlunit.html.DomNode;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ public class ImmoscoopMapper {
         for ( DomNode domElement : elements ) {
             House house = House.builder()
                     .timestamp(System.currentTimeMillis())
-                    .provider(Provider.IMMOSCOOP)
+                    .provider(ProviderType.IMMOSCOOP)
                     .title(getContent(domElement, TITLE_XPATH))
                     .price(null)
                     .address(getContent(domElement, ADDRESS_XPATH))

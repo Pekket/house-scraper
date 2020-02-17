@@ -1,7 +1,7 @@
 package be.pekket.housescraper.repository;
 
 import be.pekket.housescraper.model.House;
-import be.pekket.housescraper.provider.Provider;
+import be.pekket.housescraper.provider.ProviderType;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,7 +16,7 @@ public interface HouseRepository extends MongoRepository<House, String> {
 
     List<House> findTop30ByOrderByTimestampDesc();
 
-    List<House> findTop30ByProviderInOrderByTimestampDesc( List<Provider> providers );
+    List<House> findTop30ByProviderInOrderByTimestampDesc( List<ProviderType> providers );
 
-    List<House> findTop30ByAddressContainingIgnoreCaseAndProviderInOrderByTimestampDesc(String addressQuery, List<Provider> providers);
+    List<House> findTop30ByAddressContainingIgnoreCaseAndProviderInOrderByTimestampDesc(String addressQuery, List<ProviderType> providers);
 }

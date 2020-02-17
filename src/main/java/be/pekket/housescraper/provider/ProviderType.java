@@ -1,6 +1,6 @@
 package be.pekket.housescraper.provider;
 
-public enum Provider {
+public enum ProviderType {
     IMMOSCOOP("immoscoop"),
     ZIMMO("zimmo"),
     IMMOWEB("immoweb"),
@@ -10,7 +10,7 @@ public enum Provider {
 
     private final String provider;
 
-    Provider(final String provider) {
+    ProviderType( final String provider) {
         this.provider = provider;
     }
 
@@ -18,7 +18,7 @@ public enum Provider {
         return provider;
     }
 
-    public static Provider byValue(String value) {
+    public static ProviderType byValue( String value) {
         switch ( value ) {
             case "immoscoop":
                 return IMMOSCOOP;

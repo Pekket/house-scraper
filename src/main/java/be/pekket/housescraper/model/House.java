@@ -1,6 +1,6 @@
 package be.pekket.housescraper.model;
 
-import be.pekket.housescraper.provider.Provider;
+import be.pekket.housescraper.provider.ProviderType;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -14,7 +14,7 @@ public class House {
     @Id
     private String id;
     private long timestamp;
-    private Provider provider;
+    private ProviderType provider;
 
     private String title;
     private String agency;
