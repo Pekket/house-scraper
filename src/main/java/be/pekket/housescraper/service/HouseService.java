@@ -2,7 +2,7 @@ package be.pekket.housescraper.service;
 
 import be.pekket.housescraper.exception.ScraperException;
 import be.pekket.housescraper.model.House;
-import be.pekket.housescraper.provider.ProviderType;
+import be.pekket.housescraper.provider.Provider;
 import be.pekket.housescraper.provider.immoscoop.service.ImmoscoopService;
 import be.pekket.housescraper.provider.immovlan.service.ImmoVlanService;
 import be.pekket.housescraper.provider.immoweb.service.ImmoWebService;
@@ -59,7 +59,7 @@ public class HouseService {
 
             LOG.info("total houses found {}", foundHouses.size());
             for ( House house : foundHouses ) {
-                if ( house.getAddress() == null || ProviderType.TWEEDEHANDS.equals(house.getProvider()) || ProviderType.IMMOSCOOP.equals(house.getProvider()) ) {
+                if ( house.getAddress() == null || Provider.TWEEDEHANDS.equals(house.getProvider()) || Provider.IMMOSCOOP.equals(house.getProvider()) ) {
                     if ( !houseRepository.existsHouseByUrl(house.getUrl()) )
                         newHouses.add(houseRepository.save(house));
                 } else if ( !houseRepository.existsHouseByAddress(house.getAddress()) )
@@ -76,8 +76,8 @@ public class HouseService {
     }
 
     public List<House> getLastHouses( String addressQuery, String providers ) {
-        List<ProviderType> providersList = Arrays.stream(providers.split(","))
-                .map(ProviderType::byValue)
+        List<Provider> providersList = Arrays.stream(providers.split(","))
+                .map(Provider::byValue)
                 .collect(Collectors.toList());
 
         List<House> houses;

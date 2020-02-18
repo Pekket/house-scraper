@@ -1,6 +1,6 @@
 package be.pekket.housescraper.provider.immovlan.mapper;
 
-import be.pekket.housescraper.provider.ProviderType;
+import be.pekket.housescraper.provider.Provider;
 import be.pekket.housescraper.provider.immovlan.model.ImmoVlanHouse;
 import be.pekket.housescraper.model.House;
 import org.slf4j.Logger;
@@ -23,7 +23,7 @@ public class ImmoVlanMapper {
         for(ImmoVlanHouse ivHouse : elements) {
             House house = House.builder()
                     .timestamp(System.currentTimeMillis())
-                    .provider(ProviderType.IMMOVLAN)
+                    .provider(Provider.IMMOVLAN)
                     .title(ivHouse.getTitle())
                     .url(IMMOVLAN_BASE_URL + ivHouse.getUrl())
                     .address(null)

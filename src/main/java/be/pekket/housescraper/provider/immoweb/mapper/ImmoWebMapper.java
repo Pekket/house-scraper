@@ -1,6 +1,6 @@
 package be.pekket.housescraper.provider.immoweb.mapper;
 
-import be.pekket.housescraper.provider.ProviderType;
+import be.pekket.housescraper.provider.Provider;
 import be.pekket.housescraper.provider.immoweb.model.ImmoWebHouse;
 import be.pekket.housescraper.model.House;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ public class ImmoWebMapper {
         for(ImmoWebHouse immoHouse : elements) {
             House house = House.builder()
                     .timestamp(System.currentTimeMillis())
-                    .provider(ProviderType.IMMOWEB)
+                    .provider(Provider.IMMOWEB)
                     .title(immoHouse.getProperty().getTitle())
                     .url(BASE_URL + immoHouse.getId())
                     .address(immoHouse.getProperty().getAddress().toString())

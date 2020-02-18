@@ -30,4 +30,14 @@ public class WebhookService {
         HttpEntity<String> request = new HttpEntity<>(requestBody, headers);
         restTemplate.postForEntity(postUrl, request, String.class);
     }
+
+//    public void sendAlert( int count ) {
+//        final String requestBody = "{\"value2\":\"" + count + "\"}";
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.APPLICATION_JSON);
+//
+//        String postUrl = String.format(url, eventName, eventId);
+//        HttpEntity<String> request = new HttpEntity<>(requestBody, headers);
+//        restTemplate.postForEntity(postUrl, request, String.class);
+//    }
 }

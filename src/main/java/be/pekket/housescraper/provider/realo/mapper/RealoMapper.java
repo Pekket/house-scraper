@@ -1,7 +1,7 @@
 package be.pekket.housescraper.provider.realo.mapper;
 
 import be.pekket.housescraper.model.House;
-import be.pekket.housescraper.provider.ProviderType;
+import be.pekket.housescraper.provider.Provider;
 import be.pekket.housescraper.provider.realo.model.RealoHouse;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ public class RealoMapper {
         for ( RealoHouse realoHouse : elements ) {
             House house = House.builder()
                     .timestamp(System.currentTimeMillis())
-                    .provider(ProviderType.REALO)
+                    .provider(Provider.REALO)
                     .title(null)
                     .url(realoHouse.getUrl())
                     .address(realoHouse.getAddress() != null ? realoHouse.getAddress().toString() : null)

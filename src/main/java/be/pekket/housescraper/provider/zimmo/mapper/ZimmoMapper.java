@@ -1,7 +1,7 @@
 package be.pekket.housescraper.provider.zimmo.mapper;
 
 import be.pekket.housescraper.model.House;
-import be.pekket.housescraper.provider.ProviderType;
+import be.pekket.housescraper.provider.Provider;
 import com.gargoylesoftware.htmlunit.html.DomNode;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -26,7 +26,7 @@ public class ZimmoMapper {
         for ( DomNode domElement : elements ) {
             House house = House.builder()
                     .timestamp(System.currentTimeMillis())
-                    .provider(ProviderType.ZIMMO)
+                    .provider(Provider.ZIMMO)
                     .title(this.getContent(domElement, TITLE_XPATH))
                     .price(this.getContent(domElement, PRICE_XPATH))
                     .address(this.getContent(domElement, ADDRESS_XPATH))

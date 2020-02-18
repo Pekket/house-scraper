@@ -1,7 +1,7 @@
 package be.pekket.housescraper.provider.tweedehands.mapper;
 
 import be.pekket.housescraper.model.House;
-import be.pekket.housescraper.provider.ProviderType;
+import be.pekket.housescraper.provider.Provider;
 import be.pekket.housescraper.provider.tweedehands.model.TweedehandsHouse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +22,7 @@ public class TweedehandsMapper {
         for( TweedehandsHouse tweedehandsHouse : tweedehandsHouses) {
             House house = House.builder()
                     .timestamp(System.currentTimeMillis())
-                    .provider(ProviderType.TWEEDEHANDS)
+                    .provider(Provider.TWEEDEHANDS)
                     .title(tweedehandsHouse.getTitle())
                     .url(BASE_URL + tweedehandsHouse.getUrl())
                     .address(null)
