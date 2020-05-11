@@ -14,6 +14,10 @@ Each 15 minutes there will be a search on these websites. If new houses are foun
 
 
 ## Usage
+#### Update properties
+Webhook id & name in `application-docker.yml`
+#### Change URLs for each website
+`provider/*`
 #### Build image
 `mvn clean install`
 #### Run docker-compose
